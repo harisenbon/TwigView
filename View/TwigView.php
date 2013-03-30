@@ -40,7 +40,7 @@ require_once($twigPath . 'Lib' . DS . 'CoreExtension.php');
 
 /**
  * TwigView for CakePHP
- * 
+ *
  * @version 0.5
  * @author Kjell Bublitz <m3nt0r.de@gmail.com>
  * @link http://github.com/m3nt0r/cakephp-twig-view GitHub
@@ -54,24 +54,24 @@ class TwigView extends View {
  *
  * @var string
  */
-	public $ext = '.tpl';
-	
+	public $ext = '.twig';
+
 /**
  * Twig Environment Instance
  *
  * @var Twig_Environment
  */
 	public $Twig;
-	
+
 /**
- * Collection of paths. 
+ * Collection of paths.
  * These are stripped from $___viewFn.
  *
  * @todo overwrite getFilename()
  * @var array
  */
 	public $templatePaths = array();
-	
+
 /**
  * Constructor
  * Overridden to provide Twig loading
@@ -88,35 +88,35 @@ class TwigView extends View {
 			'autoescape' => false,
 			'debug' => Configure::read('debug') > 0
 		));;
-		
+
 		$this->Twig->addExtension(new CoreExtension);
 		$this->Twig->addExtension(new Twig_Extension_I18n);
 		$this->Twig->addExtension(new Twig_Extension_Ago);
 		$this->Twig->addExtension(new Twig_Extension_Basic);
 		$this->Twig->addExtension(new Twig_Extension_Number);
-		
+
 		parent::__construct($Controller);
-		
+
 		if (isset($Controller->theme)) {
 			$this->theme = $Controller->theme;
 		}
-		$this->ext = '.tpl';
+		$this->ext = '.twig';
 	}
 
 /**
  * Render the view
  *
- * @param string $___viewFn 
- * @param string $___dataForView 
+ * @param string $___viewFn
+ * @param string $___dataForView
  * @return void
  */
 	protected function _render($___viewFn, $___dataForView = array()) {
 		$isCtpFile = (substr($___viewFn, -3) === 'ctp');
-		
+
 		if (empty($___dataForView)) {
 			$___dataForView = $this->viewVars;
 		}
-				
+
 		if ($isCtpFile) {
 			$out = parent::_render($___viewFn, $___dataForView);
 		} else {
@@ -129,15 +129,15 @@ class TwigView extends View {
 				$helpers[$name] =& $this->loadHelper($helper);
 			}
 
-			$data = array_merge($___dataForView, $helpers);	
+			$data = array_merge($___dataForView, $helpers);
 			$data['_view'] = $this;
-			
+
 			$relativeFn = str_replace($this->templatePaths, '', $___viewFn);
 			$template = $this->Twig->loadTemplate($relativeFn);
 			echo $template->render($data);
 			$out = ob_get_clean();
 		}
-		
+
 		return $out;
 	}
 
@@ -154,9 +154,9 @@ class TwigView extends View {
 		if (substr($name, 0, 5) != 'email') {
 			$this->ext = '.ctp'; // not an email, use .ctp
 		}
-		
+
 		$return = parent::element($name, $params, $callbacks);
-		$this->ext = '.tpl';
+		$this->ext = '.twig';
 		return $return;
 	}
 }
