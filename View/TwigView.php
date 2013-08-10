@@ -34,6 +34,7 @@ require_once($twigPath . 'Lib' . DS . 'Twig_Extension_I18n.php');
 require_once($twigPath . 'Lib' . DS . 'Twig_Extension_Ago.php');
 require_once($twigPath . 'Lib' . DS . 'Twig_Extension_Basic.php');
 require_once($twigPath . 'Lib' . DS . 'Twig_Extension_Number.php');
+require_once($twigPath . 'Lib' . DS . 'Twig_Extension_Inflector.php');
 
 // get twig core extension (overwrite trans block)
 require_once($twigPath . 'Lib' . DS . 'CoreExtension.php');
@@ -94,6 +95,7 @@ class TwigView extends View {
 		$this->Twig->addExtension(new Twig_Extension_Ago);
 		$this->Twig->addExtension(new Twig_Extension_Basic);
 		$this->Twig->addExtension(new Twig_Extension_Number);
+		$this->Twig->addExtension(new Twig_Extension_Inflector());
 
 		parent::__construct($Controller);
 
