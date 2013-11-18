@@ -1,0 +1,17 @@
+{
+  "name": "harisenbon/TwigView",
+  "type": "cakephp-plugin",
+  "description": "Extensible TwigViews for CakePHP - based on the 2.0 version by Predominant",
+  "keywords": ["cakephp", "twig", "viewclass"],  
+  "authors": [
+    {
+      "name": "Keith Perhac",
+      "email": "keith@delfi-net.com",
+      "role": "Developer",
+      "homepage": "http://delfi-net.com"
+    }
+  ],
+  "require": {
+      "composer/installers": "*"
+    }
+}
