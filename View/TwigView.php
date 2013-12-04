@@ -79,7 +79,7 @@ class TwigView extends View {
  *
  * @param Controller $Controller Controller
  */
-	public function __construct(Controller $Controller) {
+	public function __construct(Controller $Controller = null) {
 		$this->templatePaths = App::path('View');
 		$loader = new Twig_Loader_Filesystem($this->templatePaths[0]);
 		$this->Twig = new Twig_Environment($loader, array(
@@ -99,7 +99,7 @@ class TwigView extends View {
 
 		parent::__construct($Controller);
 
-		if (isset($Controller->theme)) {
+		if ($Controller && isset($Controller->theme)) {
 			$this->theme = $Controller->theme;
 		}
 		$this->ext = '.twig';
