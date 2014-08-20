@@ -1,6 +1,6 @@
 <?php
 
-App::import('Helper', 'Number');
+App::uses('CakeNumber', 'Utility');
 
 /**
  * Number Helper Filters
@@ -23,8 +23,7 @@ class Cake_Number_Filters {
  * @param integer $length Size in bytes
  */
 	static function size($var) {
-		$number = new NumberHelper();
-		return $number->toReadableSize($var);
+		return CakeNumber::toReadableSize($var);
 	}
 
 /**
@@ -34,8 +33,7 @@ class Cake_Number_Filters {
  * @param integer $precision The precision of the returned number
  */
 	static function percentage($var, $p = 2) {
-		$number = new NumberHelper();
-		return $number->toPercentage($var, $p);
+		return CakeNumber::toPercentage($var, $p);
 	}
 
 /**
@@ -46,8 +44,7 @@ class Cake_Number_Filters {
  * @param array $options f.e. 'before' and 'after' options.
  */
 	static function currency($var, $curr='USD', $opts=array()) {
-		$number = new NumberHelper();
-		return $number->currency($var, $curr, $opts);
+		return CakeNumber::currency($var, $curr, $opts);
 	}
 
 /**
@@ -57,8 +54,7 @@ class Cake_Number_Filters {
  * @param integer $precision The precision of the returned number
  */
 	static function precision($var, $p=2) {
-		$number = new NumberHelper();
-		return $number->precision($var, $p);
+		return CakeNumber::precision($var, $p);
 	}
 }
 

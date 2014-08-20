@@ -1,13 +1,12 @@
 <?php
 
-App::uses('TimeHelper', 'View/Helper');
+App::uses('CakeTime', 'Utility');
 
 /**
  * Wrapper to Time->timeAgoInWords()
  */
 function cakeAgo($var) {
-	$time = new TimeHelper();
-	return $time->timeAgoInWords($var);
+	return CakeTime::timeAgoInWords($var);
 }
 
 /**
